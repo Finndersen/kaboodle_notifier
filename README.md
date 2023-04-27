@@ -1,6 +1,6 @@
 # kabuto
 
-Kaboodle ticket resale watcher
+Kaboodle ticket resale watcher (updated)
 
 ## Context
 
@@ -10,18 +10,12 @@ Kaboodle ticket resale watcher
 
 ## Functionality
 
-`kabuto` is a python script that checks the resale queue - at an imperfectly defined interval - for available tickets to a particular event and sends a text message when at least 1 ticket becomes available.
+`kabuto` is a python script that checks the resale queue for available tickets to a particular event and sends a text message when at least 1 ticket becomes available.
 
-## Limitations
+## Usage
+- Find the event page on kaboodle.co.uk, Click Resale Tickets link to open a page which should have URL in format like: 
+> https://bookings.printworkslondon.co.uk/book/<event_id>/ticket
+- Update script with event name and ID (taken from above URL)
+- Use something like [this](https://chrome.google.com/webstore/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc) to get cookies while on the ticket resale page, and fill out data in the script
+- For text message notification, create a free [Twilio](twilio.com) account and add details to script (could alternatively use SNS or something on AWS to send an email if deploying there)
 
-- one must manually find the event ID for the event of interest, and amend the script accordingly.
-- one must manually create a Twilio account, and also have a mobile number. The relevant details must then be set as Environment Variables for the script to pick up.
-- one must manually obtain the Stripe cookie after selecting the resale link and assign it to the relevant Environment Variable.
-- the defined interval doesn't take into account the time it takes to run the script. This isn't very Pythonic but I don't care.
-- text messages will keep being sent for as long as tickets are available, potentially wasting Twilio credit.
-
-## Future work
-
-- get the right cookie and assign it to the relevant Environment Variable, automatically.
-- implement interactive function for setting Environment Variables according to the relevant Twilio and phone number details. 
-- implement interactive function for choosing and setting the correct event ID. 
